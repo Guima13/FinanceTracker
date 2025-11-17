@@ -3,7 +3,7 @@ Sprint 1
 
  - Fundamentos - Base funcional da app com CRUD e gamificação inicial:
  
--Estrutura base do projeto configurada
+- Estrutura base do projeto configurada
 
 
 -Mock server configurado e integrado
@@ -12,6 +12,7 @@ Sprint 1
 -Lógica de gamificação inicial implementada
 -Dashboard com progresso e estatísticas básicas
 -Mínimo 3 testes implementados
+
 
 
 
