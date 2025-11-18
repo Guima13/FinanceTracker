@@ -13,7 +13,7 @@
 - Testes com Vitest (mínimo 6 testes unitários)
 - Bónus: Assistente Virtual/Bot - Componente interativo extra que oferece dicas, motivação ou orientação ao utilizador
 
-## Sprint 1 - Fundamentos - Base funcional da app com CRUD e gamificação inicial
+## Sprint 1 - Base funcional da app com CRUD e gamificação inicial
 
 - Estrutura base do projeto configurada
 - Mock server configurado e integrado
@@ -23,7 +23,7 @@
 - Dashboard com progresso e estatísticas básicas
 - Mínimo 3 testes implementados
 
-## Sprint 2 - Integração - Completar a experiência e consolidar boas práticas
+## Sprint 2 - Completar a experiência e consolidar boas práticas
 
 - Integração com API externa funcional
 - Sistema de gamificação completo
