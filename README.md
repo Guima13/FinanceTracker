@@ -1,44 +1,39 @@
 # FinanceTracker
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Requisitos Técnicos
 
-## Recommended Browser Setup
+- Vue 3 + Vite como base do projeto
+- Vue Router com mínimo de 4 rotas distintas
+- Pinia para gestão de estado global
+- Mock server (json-server) para persistência de dados
+- Integração com 1 API pública externa relevante ao tema
+- Sistema de gamificação funcional (XP, níveis, badges, etc.)
+- Testes com Vitest (mínimo 6 testes unitários)
+- Bónus: Assistente Virtual/Bot - Componente interativo extra que oferece dicas, motivação ou orientação ao utilizador
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Sprint 1 - Base funcional da app com CRUD e gamificação inicial
 
-## Customize configuration
+- Estrutura base do projeto configurada
+- Mock server configurado e integrado
+- CRUD funcional de objetivos/metas
+- Sistema de registo de ações do utilizador
+- Lógica de gamificação inicial implementada
+- Dashboard com progresso e estatísticas básicas
+- Mínimo 3 testes implementados
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Sprint 2 - Completar a experiência e consolidar boas práticas
 
-## Project Setup
+- Integração com API externa funcional
+- Sistema de gamificação completo
+- Interface polida, responsiva e acessível
+- Testes completos (mínimo 6)
+- Documentação (README.md)
+- (Bónus) Assistente virtual/Bot com funcionalidades básicas
 
-```sh
-npm install
-```
+## Entregas
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- 1º Sprint	24/27-11-2025
+- 2º Sprint	15/18-12-2025
+- Entrega e apresentação final	26-01-2026
