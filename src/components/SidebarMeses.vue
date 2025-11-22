@@ -1,27 +1,27 @@
 <template>
-  <div class="bg-gray-800 text-gray-100 shadow-xl w-28 py-4 rounded-lg border-r border-teal-600/50">
-    
-    <div class="px-4 pb-3 mb-2 border-b border-gray-700">
-      <h3 class="text-lg font-bold text-teal-400">2025</h3>
-    </div>
+  <div class="text-gray-100">
+    <div class="rounded-2xl bg-gray-900/80 border border-white/10 shadow-xl p-4 space-y-4">
+      <div class="space-y-1">
+        <p class="text-xs uppercase tracking-wide text-teal-300">2025</p>
+        <p class="text-sm text-gray-400">Selecione um mês</p>
+      </div>
 
-    <nav>
-      <ul>
+      <ul class="space-y-2">
         <li v-for="mes in meses" :key="mes">
-          <a 
-            href="#" 
-            @click.prevent="selecionarMes(mes)" 
-            :class="{ 
-              'bg-teal-700 text-white font-bold border-l-4 border-teal-400': mesAtivo === mes,
-              'text-gray-300 hover:bg-gray-700': mesAtivo !== mes 
-            }"
-            class="block py-2 px-4 text-sm cursor-pointer transition duration-150 ease-in-out"
+          <button
+            @click="selecionarMes(mes)"
+            :class="[
+              'w-full rounded-xl text-sm font-medium py-2.5 px-3 text-left transition duration-150 ease-in-out border border-transparent',
+              mesAtivo === mes
+                ? 'bg-teal-600 text-white border-teal-300 shadow-lg shadow-teal-500/30'
+                : 'bg-gray-800/80 text-gray-300 hover:text-white hover:border-white/10'
+            ]"
           >
             {{ mes }}
-          </a>
+          </button>
         </li>
       </ul>
-    </nav>
+    </div>
   </div>
 </template>
 
