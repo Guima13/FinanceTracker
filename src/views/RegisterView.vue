@@ -1,9 +1,63 @@
 <script setup>
+import { ref } from 'vue'; // Adicionado para variáveis reativas
+
 const etapas = [
   { titulo: 'Defina um objetivo principal', descricao: 'Ex: poupar para emergência ou viagem.' },
   { titulo: 'Escolha categorias prioritárias', descricao: 'Transporte, renda, investimentos etc.' },
   { titulo: 'Configure alertas mensais', descricao: 'Receba aviso quando atingir 80% do limite.' },
 ];
+
+// --- Estado para os inputs do formulário ---
+const formData = ref({
+  name: '',
+  email: '',
+  password: '',
+  terms: false,
+});
+// ------------------------------------------------
+
+// --- Função para lidar com o Registro (Simulação POST) ---
+async function handleRegister() {
+  // 1. Validação básica dos campos obrigatórios
+  if (!formData.value.name || !formData.value.email || !formData.value.password || !formData.value.terms) {
+    alert('Por favor, preencha todos os campos e aceite os termos.');
+    return;
+  }
+
+  // 2. Objeto a enviar ao Mock Server. Mapeia 'name' para 'username' no db.json
+  const novoUtilizador = {
+    username: formData.value.name,
+    email: formData.value.email,
+    password: formData.value.password, // Atenção: não seguro em produção
+  };
+
+  try {
+    // CORRIGIDO: URL AGORA APONTA PARA A PORTA 4000
+    const response = await fetch('http://localhost:4000/users', { 
+      method: 'POST', // Usa o método HTTP POST para criar o registo
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(novoUtilizador),
+    });
+
+    if (response.ok) {
+      // Registo bem-sucedido (o JSON Server adiciona o utilizador ao db.json)
+      await response.json(); 
+      alert(`✅ Registro simulado para ${novoUtilizador.username} bem-sucedido! Pode fazer login.`);
+      
+      // Simular redirecionamento para a página de login
+      // window.location.href = '/login'; 
+      
+    } else {
+      alert('❌ Erro no registro. Verifique a consola ou o JSON Server.');
+    }
+  } catch (error) {
+    console.error('Erro de conexão com o Mock Server:', error);
+    alert('Falha ao comunicar com o servidor simulado.');
+  }
+}
+// -------------------------------------------------------------
 </script>
 
 <template>
@@ -24,13 +78,13 @@ const etapas = [
           </p>
         </div>
 
-        <form class="space-y-5">
+        <form class="space-y-5" @submit.prevent="handleRegister">
           <div class="space-y-2">
             <label for="name" class="text-sm font-medium text-gray-300">Nome completo</label>
             <input
               id="name"
               type="text"
-              class="w-full rounded-2xl bg-gray-950/60 border border-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/40 outline-none"
+              v-model="formData.name" class="w-full rounded-2xl bg-gray-950/60 border border-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/40 outline-none"
               placeholder="Ex: Ana Martins"
             />
           </div>
@@ -40,7 +94,7 @@ const etapas = [
             <input
               id="email"
               type="email"
-              class="w-full rounded-2xl bg-gray-950/60 border border-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/40 outline-none"
+              v-model="formData.email" class="w-full rounded-2xl bg-gray-950/60 border border-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/40 outline-none"
               placeholder="voce@email.com"
             />
           </div>
@@ -50,13 +104,13 @@ const etapas = [
             <input
               id="password"
               type="password"
-              class="w-full rounded-2xl bg-gray-950/60 border border-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/40 outline-none"
+              v-model="formData.password" class="w-full rounded-2xl bg-gray-950/60 border border-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/40 outline-none"
               placeholder="••••••••"
             />
           </div>
 
           <div class="flex items-center gap-2 text-sm text-gray-400">
-            <input id="terms" type="checkbox" class="rounded bg-gray-800 border-gray-600 text-teal-400 focus:ring-teal-500" />
+            <input id="terms" type="checkbox" v-model="formData.terms" class="rounded bg-gray-800 border-gray-600 text-teal-400 focus:ring-teal-500" />
             <label for="terms">Aceito os termos e notificações do sistema.</label>
           </div>
 

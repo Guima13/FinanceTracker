@@ -1,9 +1,60 @@
 <script setup>
+import { ref } from 'vue'; // Adicionado para variáveis reativas
+
 const tips = [
   'Organize as suas contas numa unica linha do tempo.',
   'Defina alertas antes de atingir o limite do orçamento.',
   'Use etiquetas para encontrar gastos rapidamente.',
 ];
+
+// --- Estado para os inputs do formulário de login ---
+const loginData = ref({
+  email: '',
+  password: '',
+});
+// ---------------------------------------------------------
+
+// --- Função para lidar com o Login (Simulação GET/Verificação) ---
+async function handleLogin() {
+  if (!loginData.value.email || !loginData.value.password) {
+    alert('Por favor, preencha o email e a senha.');
+    return;
+  }
+
+  // CORRIGIDO: URL AGORA APONTA PARA A PORTA 4000
+  const url = `http://localhost:4000/users?email=${loginData.value.email}`;
+
+  try {
+    const response = await fetch(url);
+    const usersFound = await response.json(); // Array de utilizadores encontrados
+
+    if (usersFound.length === 0) {
+      alert('❌ Utilizador não encontrado. Verifique o email.');
+      return;
+    }
+
+    // 1. Simulação da verificação da senha
+    const user = usersFound[0];
+    
+    if (user.password === loginData.value.password) {
+      alert(`🚀 Login simulado bem-sucedido! Bem-vindo(a), ${user.username}.`);
+      
+      // Simulação: Guardar o ID do utilizador (simula a sessão iniciada)
+      localStorage.setItem('mock_user_id', user.id); 
+      
+      // Implemente aqui o seu redirecionamento
+      // Ex: router.push('/dashboard'); 
+      
+    } else {
+      alert('❌ Senha incorreta.');
+    }
+
+  } catch (error) {
+    console.error('Erro de rede ou Mock Server:', error);
+    alert('Falha ao comunicar com o servidor simulado.');
+  }
+}
+// ------------------------------------------------------------------------
 </script>
 
 <template>
@@ -44,13 +95,13 @@ const tips = [
             <p class="text-sm text-gray-400">Utilize o e-mail registado para continuar.</p>
           </div>
 
-          <form class="space-y-6">
+          <form class="space-y-6" @submit.prevent="handleLogin">
             <div class="space-y-2">
               <label for="email" class="text-sm font-medium text-gray-300">Email</label>
               <input
                 id="email"
                 type="email"
-                class="w-full rounded-2xl bg-gray-950/60 border border-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/40 outline-none"
+                v-model="loginData.email" class="w-full rounded-2xl bg-gray-950/60 border border-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/40 outline-none"
                 placeholder="voce@email.com"
               />
             </div>
@@ -63,7 +114,7 @@ const tips = [
               <input
                 id="password"
                 type="password"
-                class="w-full rounded-2xl bg-gray-950/60 border border-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/40 outline-none"
+                v-model="loginData.password" class="w-full rounded-2xl bg-gray-950/60 border border-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/40 outline-none"
                 placeholder="••••••••"
               />
             </div>

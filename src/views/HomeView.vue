@@ -13,11 +13,11 @@
           </p>
 
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-            Domine o seu dinheiro com um dashboard <span class="text-teal-300">inteligente</span>
+            Domine o seu dinheiro com uma dashboard <span class="text-teal-300">inteligente</span>
           </h1>
 
           <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
-            Controle transacoes, defina orcamentos e veja insights claros sobre os seus gastos em um unico lugar, com visual inspirado no dashboard.
+            Controle transações, defina orçamentos e veja insights claros sobre os seus gastos em um único lugar, com visual inspirado no dashboard.
           </p>
 
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -40,7 +40,7 @@
               <div class="absolute inset-0 bg-gradient-to-r from-teal-500/10 via-transparent to-cyan-500/10"></div>
               <img
                 class="w-full h-auto object-cover opacity-90"
-                src="https://placehold.co/1200x500/0f172a/14b8a6?text=Dashboard+Financeiro"
+                src="/src/homedashboard.jpg"
                 alt="Pre-visualizacao do dashboard"
               />
             </div>
